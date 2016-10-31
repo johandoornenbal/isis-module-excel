@@ -376,14 +376,14 @@ List<ToDoItemExportImportLineItem> items = objects.get(0);
 
 ==== more on the creation of pivot tables
 
-In order to create a pivot table from a list of Domain Objects (normally Viewmodels) the following annotations on properties can be used.
+In order to create a pivot table from a list of domain objects (normally Viewmodels) the following annotations on properties can be used.
 
 [source,java]
 ----
 @PivotRow
 ----
 Indicates that the property will be used as row label in the pivot table (left most column).
-This annotation is mandatory and only is allowed.
+This annotation is mandatory and only 1 is allowed.
 
 [source,java]
 ----
