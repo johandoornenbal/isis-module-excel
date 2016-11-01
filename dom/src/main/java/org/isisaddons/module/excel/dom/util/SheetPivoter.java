@@ -426,17 +426,22 @@ public class SheetPivoter {
         Cell valueCellTarget = targetSheet.getRow(rowInTarget).getCell(colPosTarget);
         if (valueCellSource!=null && (valueCellTarget== null || valueCellTarget.getCellType()==Cell.CELL_TYPE_BLANK)){
             valueCellTarget = targetSheet.getRow(rowInTarget).createCell(colPosTarget);
-            if (type == AggregationType.SUM) {
+            switch (type) {
+            case SUM:
                 PivotUtils.copyCell(valueCellSource, valueCellTarget);
-            }
-            if (type == AggregationType.COUNT) {
+                break;
+
+            case COUNT:
                 valueCellTarget.setCellValue(1);
+                break;
             }
         } else {
-            if (type == AggregationType.SUM) {
+            switch (type) {
+            case SUM:
                 PivotUtils.addCellValueTo(valueCellSource, valueCellTarget);
-            }
-            if (type == AggregationType.COUNT) {
+                break;
+
+            case COUNT:
                 if (valueCellTarget==null){
                     valueCellTarget = targetSheet.getRow(rowInTarget).createCell(colPosTarget);
                     valueCellTarget.setCellValue(1);
@@ -444,6 +449,7 @@ public class SheetPivoter {
                     double counter = valueCellTarget.getNumericCellValue();
                     valueCellTarget.setCellValue(counter + 1);
                 }
+                break;
             }
         }
 
